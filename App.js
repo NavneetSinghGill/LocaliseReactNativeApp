@@ -6,33 +6,48 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button,
+  Alert
 } from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+
+        <WordButton
+          title='Welcome'
+          onPressProp={()=>Alert.alert('You tapped the button!////')}
+        />
+        <WordButton
+          title='Blow'
+          onPressProp={()=>Alert.alert('You tapped the button!')}
+        />
+        <WordButton
+          title='Create'
+          onPressProp={()=>Alert.alert('You tapped the button!////')}
+        />
+        <WordButton
+          title='Food'
+          onPressProp={()=>Alert.alert('You tapped the button!')}
+        />
+
       </View>
+    );
+  }
+}
+
+class WordButton extends Component {
+  render() {
+    return (
+      <Button
+        onPress={this.props.onPressProp}
+        title={this.props.title}
+        color="#841584"
+        />
     );
   }
 }
@@ -40,18 +55,9 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    margin: 20,
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
