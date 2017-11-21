@@ -37,25 +37,36 @@ export default class App extends Component<{}> {
 
 //Screen components..........................
 class HomeScreen extends React.Component {
+
+  constructor(){
+    super();
+    this.state={
+      welcomeButtonText : 'Welcome',
+      blowButtonText : 'Blow',
+      createButtonText : 'Create',
+      FoodButtonText : 'Food',
+    }
+  }
+
   render() {
     return (
       <View style={{justifyContent:'space-around', flex:1}}>
       <View style={styles.container}>
 
         <WordButton
-          title='Welcome'
+          title= {this.state.welcomeButtonText}
           onPressProp={()=> this.openDetailScreenWithTitle(heading.welcome, 1)}
         />
         <WordButton
-          title='Blow'
+          title= {this.state.blowButtonText}
           onPressProp={()=> this.openDetailScreenWithTitle(heading.blow, 2)}
         />
         <WordButton
-          title='Create'
+          title= {this.state.createButtonText}
           onPressProp={()=> this.openDetailScreenWithTitle(heading.create, 3)}
         />
         <WordButton
-          title='Food'
+          title= {this.state.FoodButtonText}
           onPressProp={()=> this.openDetailScreenWithTitle(heading.food, 4)}
         />
 
@@ -66,25 +77,7 @@ class HomeScreen extends React.Component {
         <WordButton
             title='Change language'
           onPressProp={()=>
-            Alert.alert(
-              'Choose a language',
-              '',
-              [
-                {text: 'English', onPress: () => {
-                  heading.setLanguage('en');
-                  content.setLanguage('en');
-                }},
-                {text: 'Hindi', onPress: () => {
-                  heading.setLanguage('hi');
-                  content.setLanguage('hi');
-                }},
-                {text: 'Spanish', onPress: () => {
-                  heading.setLanguage('es');
-                  content.setLanguage('es');
-                }},
-              ],
-              { cancelable: true }
-            )
+            this.changeLanguageButtonTapped()
           }
         />
 
@@ -104,8 +97,38 @@ class HomeScreen extends React.Component {
 
   }
 
-  refreshLanguage() {
+  changeLanguageButtonTapped() {
+    Alert.alert(
+      'Choose a language',
+      '',
+      [
+        {text: 'English', onPress: () => {
+          heading.setLanguage('en');
+          content.setLanguage('en');
+          this.refreshLanguage();
+        }},
+        {text: 'Hindi', onPress: () => {
+          heading.setLanguage('hi');
+          content.setLanguage('hi');
+          this.refreshLanguage();
+        }},
+        {text: 'Spanish', onPress: () => {
+          heading.setLanguage('es');
+          content.setLanguage('es');
+          this.refreshLanguage();
+        }},
+      ],
+      { cancelable: true }
+    )
+  }
 
+  refreshLanguage() {
+    this.setState({
+      welcomeButtonText: heading.welcome,
+      blowButtonText : heading.blow,
+      createButtonText : heading.create,
+      FoodButtonText : heading.food,
+     })
   }
 }
 
