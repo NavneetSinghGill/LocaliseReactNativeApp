@@ -92,7 +92,9 @@ class HomeScreen extends React.Component {
       title: title,
       passProps: {
         indexOfWord: indexOfWord,
-      }
+      },
+      leftButtonTitle: 'Back',
+      onLeftButtonPress : ()=>this.props.navigator.pop(),
     });
 
   }
@@ -158,11 +160,6 @@ class DetailScreen extends React.Component {
     return (
 
       <View style={styles.container}>
-
-        <WordButton
-          title='Go back'
-          onPressProp={()=> this.props.navigator.pop()}
-        />
 
         <Text style={{flex:1, marginTop: 90}}>
           {this.getContent()}
