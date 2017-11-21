@@ -41,10 +41,10 @@ class HomeScreen extends React.Component {
   constructor(){
     super();
     this.state={
-      welcomeButtonText : 'Welcome',
-      blowButtonText : 'Blow',
-      createButtonText : 'Create',
-      FoodButtonText : 'Food',
+      welcomeButtonText : heading.welcome,
+      blowButtonText : heading.blow,
+      createButtonText : heading.create,
+      FoodButtonText : heading.food,
     }
   }
 
